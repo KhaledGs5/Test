@@ -29,7 +29,7 @@ pipeline {
         stage('Docker Build and Push') {
             steps {
                 script {
-                    docker.withDockerRegistry([credentialsId: "docker-cred", url: "https://index.docker.io/v1/"]) {
+                    docker.withRegistry([credentialsId: "docker-cred", url: "https://index.docker.io/v1/"]) {
                         sh "docker build -t khaledgs/Test ."
                         sh "docker push khaledgs/Test"
                     }
