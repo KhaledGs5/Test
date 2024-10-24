@@ -8,9 +8,10 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'git branch: 'main', credentialsId: 'git-cred', url: 'https://github.com/KhaledGs5/Test.git'
+                git branch: 'main', url: 'https://github.com/KhaledGs5/Test.git', credentialsId: 'git-cred'
             }
         }
+        
         stage('Sonarqube Analysis') {
             steps {
                 sh """
@@ -24,9 +25,10 @@ pipeline {
                 """
             }
         }
+        
         stage('OWASP SCAN') {
             steps {
-                dependencyCheck additionalArguments: ' --scan ./', odcInstallation: 'DP'
+                dependencyCheck additionalArguments: '--scan ./', odcInstallation: 'DP'
                 dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
             }
         }
