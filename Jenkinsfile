@@ -29,8 +29,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: "docker-cred", url: ""]) {
-                        bat "docker build -t khaledgs/Test ."
-                        bat "docker push khaledgs/Test"
+                        sh "docker build -t khaledgs/Test ."
+                        sh "docker push khaledgs/Test"
                     }
                 }
             }
