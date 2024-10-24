@@ -11,7 +11,7 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/KhaledGs5/Test.git', credentialsId: 'git-cred'
             }
         }
-        
+
         stage('Sonarqube Analysis') {
             steps {
                 sh """
@@ -25,10 +25,11 @@ pipeline {
                 """
             }
         }
+
         stage('Docker Build and Push') {
             steps {
                 script {
-                    withDockerRegistry([credentialsId: "docker-cred", url: ""]) {
+                    withDockerRegistry([credentialsId: "docker-cred", url: "https://index.docker.io/v1/"]) {
                         sh "docker build -t khaledgs/Test ."
                         sh "docker push khaledgs/Test"
                     }
