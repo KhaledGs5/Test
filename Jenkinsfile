@@ -30,8 +30,8 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker-cred') {
-                        sh "docker build -t khaledgs/Test ."
-                        sh "docker push khaledgs/Test"
+                        sh "docker build -t khaledgs/test ."
+                        sh "docker push khaledgs/test"
                     }
                 }
             }
