@@ -29,8 +29,7 @@ pipeline {
         stage('Docker Build and Push') {
             steps {
                 script {
-                    // This disables the sandbox
-                    docker.withRegistry([credentialsId: "docker-cred", url: "https://index.docker.io/v1/"]) {
+                    withDockerRegistry(credentialsId: 'docker-cred') {
                         sh "docker build -t khaledgs/Test ."
                         sh "docker push khaledgs/Test"
                     }
