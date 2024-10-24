@@ -25,6 +25,15 @@ pipeline {
                 """
             }
         }
-        
+        stage('Docker Build and Push') {
+            steps {
+                script {
+                    withDockerRegistry([credentialsId: "docker-cred", url: ""]) {
+                        bat "docker build -t khaledgs/Test ."
+                        bat "docker push khaledgs/Test"
+                    }
+                }
+            }
+        }
     }
 }
